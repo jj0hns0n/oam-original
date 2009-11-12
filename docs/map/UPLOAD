@@ -1,0 +1,47 @@
+ * Login to http://openaerialmap.hypercube.telascience.org/admin/
+   telascience / hypercube
+
+ * Create an agent. 
+   http://openaerialmap.hypercube.telascience.org/admin/view/agent/
+
+ * Create a datasource. Attribution should be a short string which 
+   will be used in the map display -- everything else is self explanatory.
+ * Note the ID of the new datasource, displayed in the URL. 
+
+ * Create a directory in /optistor/viz/openaerialmap/datasources/$YourID.
+   YourId will be something like '12'.
+
+ * Copy your geodata to this directory. This will need to be a geotiff, or 
+   a set of geographic data tiles, or image with world file. If it is a set of
+   tiles, an index should be built like this:
+
+   gdaltindex index.shp `find /optistor/viz/openaerialmap/datasources/$YourID -name \*.tiff` 
+   
+   or similar. Your data should be properly overviewed, especially if it is
+   large. 'gdaladdo your_image.tiff 2 4 8 16' can help here.
+   
+ * Create a data record. This will likely be a 'geotiff', even if it is not a
+   tiff file,  or a tile index. 
+
+   Extent should be a comma seperated list of left,bottom,right,top.
+
+   Layername should be null.
+ 
+   Data resolution is base data resolution in meters/pixel.
+
+   min scale is the 'largest' scale that the map is displayed at: this 
+   will likely be something like '100' or '1000'.
+
+   max scale is the 'smallest' scale that the map is displayed at -- 
+   this should be something like 25000 or 50000.
+
+   The location of the data will be:
+
+     /optistore/viz/openaerialmap/datasources/$YourId/yourfile.png
+
+   or 
+   
+     /optistore/viz/openaerialmap/datasources/$YourId/index.shp
+
+   Currently, the process to regenerate the map is manual,
+   so after you do that, kick Chris to update the mapfile.

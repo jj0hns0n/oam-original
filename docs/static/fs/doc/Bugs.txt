@@ -1,0 +1,4 @@
+When using the BerkleyDB store, it is possible to create a feature with a 
+very high ID by calling 'create' on a feature with a large ID. Doing this 
+will cause the BerkleyDB store to perform much more slowly. There is 
+currently no known work around for this problem. 

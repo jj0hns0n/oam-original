@@ -1,0 +1,42 @@
+{% extends "base.tmpl" %}
+
+{% block content %}
+<p> OpenAerialMap is an open collection of aerial photographs, collected into a single coherent view of the world. Read the <a href="/tutorial/">tutorial</a> to find out how to upload your own imagery, check out the <a href="//wiki.openaerialmap.org">wiki</a>, or go straight to browsing <a href="/map/">the map</a>.</p>
+<div style="float:right; width: 27%; font-size: .9em">
+<h2>Recent Uploads</h2>  
+<ul>
+{% for datasource in datasources %}
+  <li>
+  {% if datasource.records %}
+   <div style="font-size:.8em; float:right "> 
+   {% for record in datasource.records %}
+     <a onclick='map.setCenter(new OpenLayers.LonLat({{record.get_center.0}}, {{record.get_center.1}}), {{ record.get_zoom }}); return false;'  href="/map/?lat={{record.get_center.1}}&lon={{record.get_center.0}}&zoom={{record.get_zoom}}">Show On Map</a>
+   {% endfor %}
+   </div>
+  {% endif %}
+  <a href="/datasource/{{datasource.id}}/">{{datasource.name}}</a>
+  <br />
+  <span style="margin-left: 20px; font-size: .9em">From <a href="{{datasource.agent.url}}">{{datasource.attribution}}</a></span>
+  </li>
+{% endfor %}
+</ul>
+<a href="/datasource/">More Uploads</a>
+</div>
+    <style type="text/css">
+        .olControlAttribution { bottom: 0px!important; }
+    </style>    
+<div style="width: 70%; height: 400px" id="map">
+
+</div>
+<div style="z-index: 10000; "><input type='checkbox' id='osm' value='true' onchange='layer.setVisibility(this.checked);' /> Display OpenStreetMap Data</div>
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
+<script src="/static/js/map.js"></script>
+<script defer='defer'>
+{% if datasources.0.records %}
+map_init(new OpenLayers.LonLat({{ datasources.0.records.0.get_center.0 }}, {{ datasources.0.records.0.get_center.1 }}), {{datasources.0.records.0.get_zoom }});
+{% else %}
+map_init();
+{% endif %}
+    </script>
+<br clear="both"/>
+{% endblock %}

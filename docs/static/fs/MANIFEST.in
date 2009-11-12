@@ -1,0 +1,10 @@
+include README.txt
+include LICENSE.txt
+include CHANGELOG.txt
+include *.py
+include *.cgi
+include *.fcgi
+include *.html
+include json.js
+recursive-include template *.html
+recursive-include doc *.txt

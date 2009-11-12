@@ -1,0 +1,17 @@
+    layer
+      name  "layer_{{ obj.id }}"
+      group "world"
+      type raster
+      status on
+      tileindex "{{ obj.data }}"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "{{ obj.datasource.name }}"
+        "wms_abstract" "{{ obj.datasource.description }}"
+        "wms_attribution_title" "{{ obj.datasource.attribution }}"
+        "wms_attribution_onlineresource" "{{ obj.datasource.url }}"
+      END
+    minscale {{ scales.min }}
+    maxscale {{ scales.max }}
+    END

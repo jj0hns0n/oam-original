@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>OpenAerialMap</title>
+    <style type="text/css">
+        #map { width:100%; height:100%; border:1px solid black; }
+        .olControlAttribution { bottom: 0px!important; }
+    </style>
+    <script src="openlayers/OpenLayers.js"></script>
+    <script>
+        var map, layer;
+        function map_init(location, zoom){
+            OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
+            map = new OpenLayers.Map( 'map', {
+               units: 'm', 
+               maxResolution: 156543.03391,
+               maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
+               numZoomLevels: 22, 
+               controls: [  
+                 new OpenLayers.Control.Scale(), 
+                 new OpenLayers.Control.PanZoomBar(), 
+                 new OpenLayers.Control.Permalink(), 
+                 new OpenLayers.Control.Navigation(), 
+                 new OpenLayers.Control.Attribution()
+                ]
+              } 
+            );
+            layer = new OpenLayers.Layer.TMS( "OpenStreetMap", 
+             [
+              "http://tile1.openaerialmap.org/tiles/1.0.0/openaerialmap-900913/",
+              "http://tile2.openaerialmap.org/tiles/1.0.0/openaerialmap-900913/",
+              "http://tile3.openaerialmap.org/tiles/1.0.0/openaerialmap-900913/"
+             ],
+                 {layername: 'openaerialmap-900913', buffer: 1,
+                    getURL: function (bounds) {
+                        var res = this.map.getResolution();
+                        var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
+                        var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
+                        var z = this.map.getZoom();
+                        var limit = Math.pow(2, z);
+                            var url = this.url;
+                            var path = z + "/" + x + "/" + y + ".png";
+
+                            if (url instanceof Array)
+                            {
+                                url = this.selectUrl(path, url);
+                            }
+
+                            return url + path;
+                        }
+                 } );
+            map.addLayer(layer);
+            if (!map.getCenter()) {
+                map.zoomToMaxExtent();
+            }
+        }
+        </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script defer='defer'>
+        map_init();
+    </script>
+  </body>
+</html>

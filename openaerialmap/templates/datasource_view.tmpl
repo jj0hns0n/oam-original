@@ -1,0 +1,39 @@
+{% extends "base.tmpl" %}
+{% block title %}{{ datasource.name }}{% endblock %} 
+{% block content %}
+<h2>{{ datasource.name }} (<a href="/datasource/edit/{{ datasource.id }}/">Edit</a>)</h2>
+<p>{{ datasource.description }}</p>
+<ul>
+<li>Date: {{ datasource.date }}</li>
+<li>Source: <a href="{{ datasource.agent.url }}">{{ datasource.agent.name }}</a></li>
+{% if datasource.license %}
+<li>License: <a href="{{ datasource.license.url }}">{{ datasource.license.name }}</a></li>
+{% endif %}
+<li>
+<a href="{{ datasource.url }}">More information</a></li>
+</ul>
+
+<h3>Data Records:</h3>
+<ul>
+{% for record in records %}
+<li><a href="/map/?lat={{record.get_center.1}}&lon={{record.get_center.0}}&zoom={{record.get_zoom}}">See Map</a>. Min Scale: {{ record.min_scale }}, Max Scale: {{ record.max_scale }}, Extent: {{ record.extent }} (<a href="/datarecord/edit/{{ record.id }}">Edit</a>)</li>
+{% endfor %}
+</ul>
+
+{% if files %}
+<h3>Files:</h3>
+
+<ul>
+{% for file in files %}
+<li>{{ file }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+<h3>Upload Data</h3>
+<form enctype="multipart/form-data" method="post" action="">
+<table>
+{{ form }}
+<tr><td></td><td><input type="submit"  value="Upload" /></td></tr>
+</table>
+</form>
+{% endblock %}

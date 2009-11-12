@@ -1,0 +1,31 @@
+{% extends "base.tmpl" %}
+{% load captchatag %}
+
+{% block title %}Create {{ type }}{% endblock %} 
+{% block h1title %}Create {{ type }}{% endblock %} 
+{% block content %}
+<style type="text/css">
+th { width: 20%; text-align:right; padding-right: 10px; }
+</style>
+<form enctype="multipart/form-data" method="post" action="">
+<table width="100%">
+{{ form }}
+
+{% if recaptcha_failure %}
+    <p class="errorlist">Please try the word test again:<p>
+{% else %}
+    <p>Type the words below:</h4>
+{% endif %}
+{% recaptcha_html %}
+
+<tr><td></td><td><input type="submit"  value="Create" /></td></tr>
+</table>
+</form>
+<p>
+By uploading data to OAM, you state that to the best of your knowledge, the
+data is available under a license which is <a href="/licensing/">compatible
+with OpenAerialMap</a>. Any imagery which is not compatible with these licenses
+will be removed. All metadata is placed under the CC-By license where not
+otherwise covered by copyright. 
+</p>
+{% endblock %}

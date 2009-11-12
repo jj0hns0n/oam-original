@@ -1,0 +1,11 @@
+1. ?bbox= -> spatial query 
+    * left, bottom, top, right. 
+2. ?maxfeatures= -> maximum number of returned features. 
+    * May also be limited by the datasource. 
+3. ?startfeature= -> first feature should be this far into dataset 
+    * Equivilant to 'offset' in database queries. 
+4. ?queryable=list,of,keys -> keys which can be queried against via URL 
+    * Can also be specified in the datasource configuration. 
+      Datasource configuration overrides URL configuration.
+5. ?key=value -> key=value attribute query
+    * only keys in 'queryable' will be queried. 

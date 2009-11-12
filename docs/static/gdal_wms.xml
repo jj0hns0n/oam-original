@@ -1,0 +1,21 @@
+<GDAL_WMS>
+    <Service name="WMS">
+        <Version>1</Version>
+        <ServerUrl>http://tile.openaerialmap.org/tiles/</ServerUrl>
+        <Layers>openaerialmap</Layers>
+    </Service>
+    <DataWindow>
+        <UpperLeftX>-180.0</UpperLeftX>
+        <UpperLeftY>90.0</UpperLeftY>
+        <LowerRightX>180.0</LowerRightX>
+        <LowerRightY>-90.0</LowerRightY>
+        <SizeX>1073741824</SizeX>
+        <SizeY>536870912</SizeY>
+        <TileLevel>21</TileLevel>
+    </DataWindow>
+    <Projection>EPSG:4326</Projection>
+    <OverviewCount>21</OverviewCount>
+    <BlockSizeX>256</BlockSizeX>
+    <BlockSizeY>256</BlockSizeY>
+    <BandsCount>3</BandsCount>
+</GDAL_WMS>

@@ -1,0 +1,649 @@
+MAP
+  EXTENT -180 -90 180 90
+  IMAGECOLOR 0 0 0 
+  IMAGETYPE jpeg
+  SIZE 256 256 
+  STATUS ON
+  UNITS DD
+  NAME "World"
+
+  OUTPUTFORMAT
+    NAME jpeg
+    MIMETYPE image/jpeg
+    DRIVER GD/JPEG
+    EXTENSION jpeg
+    TRANSPARENT FALSE
+  END
+
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  WEB
+    IMAGEPATH "/tmp/"
+    IMAGEURL "/tmp/"
+      METADATA
+        "original_projection" "init=epsg:4326"
+        "original_extents"  "-180,-90,180,90"
+        "wms_title" "World Map"
+        "wms_abstract" "Fuses many different sources to create a single, coherent world map."
+        "wms_srs" "EPSG:4326 EPSG:900913"
+      END
+  END
+
+  
+  LAYER
+    NAME "layer_2"
+    GROUP "world"
+    CONNECTION "http://wms.telascience.org/cgi-bin/ngBM_wms?STYLES=&TIME=2004-09"
+    CONNECTIONTYPE WMS
+    STATUS ON
+    TYPE RASTER 
+    METADATA
+      "wms_srs" "EPSG:4326"
+      "wms_format"  "image/jpeg"
+      "wms_server_version"  "1.1.0"
+      "wms_name" "world_topo_bathy"
+      "wms_title" "Blue Marble Next Generation"
+      "wms_abstract" "A true color earth dataset including seasonal dynamics from MODIS. Published by the NASA Earth Observatory."
+      "wms_attribution_title" "NASA"
+      "wms_attribution_onlineresource" "http://visibleearth.nasa.gov/view_detail.php?id=7108"
+    END
+    minscale 3000000
+    maxscale 500000000
+  END
+
+  
+  LAYER
+    NAME "layer_1"
+    GROUP "world"
+    CONNECTION "http://hypercube.telascience.org/cgi-bin/landsat7"
+    CONNECTIONTYPE WMS
+    STATUS ON
+    TYPE RASTER 
+    METADATA
+      "wms_srs" "EPSG:4326"
+      "wms_format"  "image/jpeg"
+      "wms_server_version"  "1.1.0"
+      "wms_name" "landsat7"
+      "wms_title" "i-Cubed Landsat"
+      "wms_abstract" "The i-Cubed Landsat processing is hosted by TelaScience, and used by organizations like WorldWind. The data is a visual color fusion.<br />There is currently some question as to the licensing terms for this data. This is being resolved as quickly as possible. Until then, it is best to assume that this imagery can not be used outside of OpenAerialMap. "
+      "wms_attribution_title" "i-Cubed"
+      "wms_attribution_onlineresource" "http://hypercube.telascience.org/cgi-bin/landsat7?request=GetCapabilities&Service=WMS&Version=1.1.1"
+    END
+    minscale 1500
+    maxscale 3000000
+  END
+
+  
+    layer
+      name  "layer_7"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/7/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "2006 North Dakota NAIP "
+        "wms_abstract" "This data set contains imagery from the National Agriculture Imagery Program (NAIP).  NAIP acquires digital ortho imagery during the agricultural growing seasons in the continental U.S. A primary goal of the NAIP program is to enable availability of ortho imagery within one year of acquisition.  This is a 2 meter GSD ortho imagery rectified to within +/- 10 meters of reference DOQQs."
+        "wms_attribution_title" "USDA"
+        "wms_attribution_onlineresource" "http://www.nd.gov/gis/mapsdata/download/"
+      END
+    minscale 1000
+    maxscale 1500000
+    END
+
+  
+    layer
+      name  "layer_10"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/9/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "Afghanistan Rampant Lion Data"
+        "wms_abstract" "The digital imagery on this website, consisting of ~ 32,000 individual ortho-photos, was collected by the Naval Research Laboratory (NRL) during Project Rampant Lion I (June-August, 2006). The project was a cooperative research program conducted by NRL and the US Geological Survey, and primarily funded by the Government of Afghanistan with some additional support from the Office of Naval Research and other US Government agencies."
+        "wms_attribution_title" "USGS, NRL"
+        "wms_attribution_onlineresource" "http://mapserver.cmf.nrl.navy.mil/"
+      END
+    minscale 100
+    maxscale 100000
+    END
+
+  
+    layer
+      name  "layer_17"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/17/tv_6_fongrafle_4326.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Tuvalu Historic Aerial Photographs"
+        "wms_abstract" "Historic Aerial Photographs of Funafuti, Tuvalu"
+        "wms_attribution_title" "SOPAC"
+        "wms_attribution_onlineresource" "http://iprc.sopac.org.fj/geonetwork/srv/en/metadata.show?id=123"
+      END
+      minscale 800
+      maxscale 55000
+    END
+
+
+  
+    layer
+      name  "layer_20"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/19/n37122g3nw_warped.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "California 2005 NAIP Imagery"
+        "wms_abstract" "2005 California NAIP imagery."
+        "wms_attribution_title" "UC Davis"
+        "wms_attribution_onlineresource" "http://archive.casil.ucdavis.edu/casil/remote_sensing/doq/index/"
+      END
+      minscale 1
+      maxscale 300000
+    END
+
+
+  
+    layer
+      name  "layer_21"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/19/n37122g3sw_warped.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "California 2005 NAIP Imagery"
+        "wms_abstract" "2005 California NAIP imagery."
+        "wms_attribution_title" "UC Davis"
+        "wms_attribution_onlineresource" "http://archive.casil.ucdavis.edu/casil/remote_sensing/doq/index/"
+      END
+      minscale 1
+      maxscale 300000
+    END
+
+
+  
+    layer
+      name  "layer_32"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/30/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "Montana NAIP 2005"
+        "wms_abstract" "Natural-Color Aerial Photos of Montana, 2005 U.S. Farm Services Agency National Agricultural Imagery Program (NAIP)"
+        "wms_attribution_title" "Montana NRIS"
+        "wms_attribution_onlineresource" "http://www.nris.mt.gov/nsdi/orthophotos/naip_2005.asp"
+      END
+    minscale 100
+    maxscale 500000
+    END
+
+  
+    layer
+      name  "layer_30"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/25/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "Bismarck-Mandan Mosaic"
+        "wms_abstract" "The combined Bismarck and Mandan aerial photography on the GIS Hub is courtesy of the City of Bismarck and the City of Mandan. Note that the MrSID file size is very large and is listed alongside the file in the directory. Please also note the TXT file which provide metadata and the PDF file for the extent of the photography."
+        "wms_attribution_title" "Cities of Bismarck, Mandan"
+        "wms_attribution_onlineresource" "http://www.nd.gov/gis/mapsdata/download/"
+      END
+    minscale 100
+    maxscale 100000
+    END
+
+  
+    layer
+      name  "layer_9"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/8/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "San Diego, USGS Seamless, 2003"
+        "wms_abstract" "San Diego Urban Area orthos, produced by USGS in March of 2003 at .65M/px. Covers approximately 30% of San Diego County. "
+        "wms_attribution_title" "USGS"
+        "wms_attribution_onlineresource" "http://seamless.usgs.gov/Website/Seamless/products/listofortho.asp"
+      END
+    minscale 100
+    maxscale 500000
+    END
+
+  
+    layer
+      name  "layer_18"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/14/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "MassGIS Aerial Imagery"
+        "wms_abstract" "Captured over seven days from April 9 through April 17, 2005."
+        "wms_attribution_title" "MassGIS"
+        "wms_attribution_onlineresource" "http://mass.gov/mgis/colororthos2005.htm"
+      END
+    minscale 1
+    maxscale 250000
+    END
+
+  
+    layer
+      name  "layer_34"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/31/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "Fort Collins"
+        "wms_abstract" "1/2 foot color imagery, November 2002"
+        "wms_attribution_title" "City of Fort Collins"
+        "wms_attribution_onlineresource" "http://fcgov.com/gis/downloadable-data.php"
+      END
+    minscale 0
+    maxscale 100000
+    END
+
+  
+    layer
+      name  "layer_4"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/4/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "Helena  High-Resolution Color Orthophotographs"
+        "wms_abstract" "Color orthophotographs of the City of Helena, photogrammetrically compiled from aerial photography flown in April 20, 2006. The project encompasses approximately 44 squares miles of the urban area in and around the City of Helena. The scale of the aerial photography negative was 1 inch =660' exposed at a flight height of 3,500 feet above mean ground level. The resolution for this orthophotograph is 0.0150 meter, or approximately 6 inches."
+        "wms_attribution_title" "City of Helena"
+        "wms_attribution_onlineresource" "http://nris.mt.gov/nsdi/nris/dop_2006_hln.html"
+      END
+    minscale 15
+    maxscale 200000
+    END
+
+  
+    layer
+      name  "layer_25"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/23/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "Merano"
+        "wms_abstract" "Orthophotos of the city of Merano"
+        "wms_attribution_title" "Comune di Merano, Ufficio Urbanistica, Servizio GIS"
+        "wms_attribution_onlineresource" "http://www.comune.merano.bz.it/"
+      END
+    minscale 100
+    maxscale 50000
+    END
+
+  
+    layer
+      name  "layer_3"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/3/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "Digital Orthophotos, Johnston County, NC"
+        "wms_abstract" "Countywide orthophotos consist of a tiff file format, one file for each 1 inch =200' tax map covering an area of 5000’ X 5000’. Pixel size represents .5' on the ground, color images are 286 meg per tax map grid coverage area. No attributes available. Each tiff has a corresponding enhanced TFW file that contains geographic coordinate system information and data relating to aerial camera, aeial flight, map accuracies etc. These orthos were produced from an aerial flight covering Johnston Co NC on March 15th, 18th , 21st & 29th 2005. Digital Orthophotos were produced from an aerial flight in 2005, spring flying season using digital photogrammety techniques."
+        "wms_attribution_title" "Johnston County Government"
+        "wms_attribution_onlineresource" "http://www.johnstonnc.com/files/gis/files/2005orthophotos.htm"
+      END
+    minscale 1
+    maxscale 500000
+    END
+
+  
+    layer
+      name  "layer_8"
+      group "world"
+      type raster
+      status on
+      tileindex "/optistor/viz/openaerialmap/datasources/6/index.shp"
+      projection "init=epsg:4326" end
+      OFFSITE 0 0 0  
+      METADATA
+        "wms_title" "City of Austin 2006 aerial photography"
+        "wms_abstract" "Year 2006 6 inch true color aerial photography tiles."
+        "wms_attribution_title" "City of Austin"
+        "wms_attribution_onlineresource" "ftp://coageoid01.ci.austin.tx.us/GIS-Data/Regional/coa_gis.html"
+      END
+    minscale 100
+    maxscale 300000
+    END
+
+  
+    layer
+      name  "layer_5"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/5/pict-earth-1_20071025.tiff"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth UAV Flight, San Diego Wildfires"
+        "wms_abstract" "UAV Flight over small area of San Diego, by Pict'Earth."
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://pictearth.com/2007sdfires.html"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_6"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/5/pict-earth-2_20071025.tiff"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth UAV Flight, San Diego Wildfires"
+        "wms_abstract" "UAV Flight over small area of San Diego, by Pict'Earth."
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://pictearth.com/2007sdfires.html"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_11"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/11/mosasf.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth 2007-10-28 Cessna Flight"
+        "wms_abstract" "Cessna 172 flight over areas burned by Wildfires"
+        "wms_attribution_title" "PictEarth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/sdfires07/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_12"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/12/tarascon2007wgs.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth Tarascon 2007"
+        "wms_abstract" "Tarascon 2007"
+        "wms_attribution_title" "PictEarth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/tarascon/"
+      END
+      minscale 1
+      maxscale 100000
+    END
+
+
+  
+    layer
+      name  "layer_13"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/13/semagwgs.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth Semag"
+        "wms_abstract" "Semag"
+        "wms_attribution_title" "PictEarth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/semag/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_15"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/15/bm07-nologo.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth Burning Man 07"
+        "wms_abstract" "Pict'Earth Imagery from Fractals Cessna 172. Shot with a canon G7 on 2007-08-30 and 2007-08-31. <a href='http://www.flickr.com/photos/pictearth/sets/72157601951408001'>Flickr Gallery</a>"
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://pictearth.com/burningman.html"
+      END
+      minscale 3
+      maxscale 100000
+    END
+
+
+  
+    layer
+      name  "layer_16"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/16/stmalo.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth St. Malo"
+        "wms_abstract" "Small mosaic from imagery flown over Carlsbad California with an EasyStar/N95 setup."
+        "wms_attribution_title" "PictEarth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/stmalo/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_19"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/18/alameda.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Alameda"
+        "wms_abstract" "Alameda"
+        "wms_attribution_title" "DIY Drones"
+        "wms_attribution_onlineresource" "http://diydrones.com/profiles/blog/show?id=705844%3ABlogPost%3A3667"
+      END
+      minscale 1
+      maxscale 20000
+    END
+
+
+  
+    layer
+      name  "layer_22"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/20/boulouris.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth Boulouris"
+        "wms_abstract" "Boulouris"
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_23"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/21/kelsall.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Kelsall Village"
+        "wms_abstract" "Kelsall Village!"
+        "wms_attribution_title" "Gung Ho"
+        "wms_attribution_onlineresource" "http://loolee.org/projects/aircam/Presentation/HousingProj/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_24"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/22/angeiroun.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "Pict'Earth Angeiroun"
+        "wms_abstract" "Angeiroun"
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/angeiroun/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_26"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/26/sasse.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "PictEarth Sasse"
+        "wms_abstract" "Sasse"
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/sasse/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_27"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/27/skyhaven.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "PictEarth Skyhaven"
+        "wms_abstract" "Skyhaven"
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/skyhaven/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_28"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/28/montagnette.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "PictEarth Montagnette"
+        "wms_abstract" "Montagnette"
+        "wms_attribution_title" "PictEarth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/montagnette/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+    layer
+      name  "layer_31"
+      group "world"
+      type raster
+      status on
+      data "/optistor/viz/openaerialmap/datasources/29/torrey.tif"
+      projection "init=epsg:4326" end
+      offsite 0 0 0
+      METADATA
+        "wms_title" "PictEarth Torrey Pines"
+        "wms_abstract" "Torrey Pines"
+        "wms_attribution_title" "Pict'Earth"
+        "wms_attribution_onlineresource" "http://strabo.pictearth.com/projects/torrey-pines/"
+      END
+      minscale 1
+      maxscale 50000
+    END
+
+
+  
+
+END

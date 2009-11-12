@@ -1,0 +1,22 @@
+{% extends "base.tmpl" %}
+
+{% block content %}
+<ul>
+{% for datasource in datasources %}
+  <li>
+  {% if datasource.records %}
+   <div style="float:right">
+   {% for record in datasource.records %}
+     <a href="/map/?lat={{record.get_center.1}}&lon={{record.get_center.0}}&zoom={{record.get_zoom}}">Show On Map</a>
+   {% endfor %}
+   </div>
+  {% endif %}
+  <a href="/datasource/{{datasource.id}}/">{{datasource.name}}</a>
+  <br />
+  {{ datasource.description }}<br />
+  <span style="margin-left: 20px; font-size: .9em">From <a href="{{datasource.agent.url}}">{{datasource.attribution}}</a></span>
+  </li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

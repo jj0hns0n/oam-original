@@ -1,0 +1,34 @@
+MAP
+  EXTENT -180 -90 180 90
+  IMAGECOLOR 0 0 0 
+  IMAGETYPE jpeg
+  SIZE 256 256 
+  STATUS ON
+  UNITS DD
+  NAME "World"
+
+  OUTPUTFORMAT
+    NAME jpeg
+    MIMETYPE image/jpeg
+    DRIVER GD/JPEG
+    EXTENSION jpeg
+    TRANSPARENT FALSE
+  END
+
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  WEB
+    IMAGEPATH "/tmp/"
+    IMAGEURL "/tmp/"
+      METADATA
+        "original_projection" "init=epsg:4326"
+        "original_extents"  "-180,-90,180,90"
+        "wms_title" "World Map"
+        "wms_abstract" "Fuses many different sources to create a single, coherent world map."
+        "wms_srs" "EPSG:4326 EPSG:900913"
+      END
+  END
+
+END

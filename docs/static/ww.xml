@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LayerSet Name="OAM" ShowAtStartup="true" ShowOnlyOneLayers="false"> 
+    <ChildLayerSet Name="openaerialmap" ShowAtStartup="false" ShowOnlyOneLayer="true">
+    <QuadTileSet ShowAtStartup="true">
+      <Name>openaerialmap</Name>
+      <Description>OpenAerialMap data.</Description>
+      <DistanceAboveSurface>0</DistanceAboveSurface>
+      <BoundingBox>
+        <West><Value>-180.0</Value></West>
+        <South><Value>-90.0</Value></South>
+        <East><Value>180.0</Value></East>
+        <North><Value>90.0</Value></North>
+      </BoundingBox>
+      <TerrainMapped>false</TerrainMapped>
+      <ImageAccessor>
+        <LevelZeroTileSizeDegrees>180.0</LevelZeroTileSizeDegrees>
+        <NumberLevels>20</NumberLevels>
+        <TextureSizePixels>256</TextureSizePixels>
+        <ImageFileExtension>jpeg</ImageFileExtension>
+        <ImageTileService>
+          <ServerUrl>http://tile.openaerialmap.org/tiles/</ServerUrl>
+          <DataSetName>openaerialmap</DataSetName>
+        </ImageTileService>  
+      </ImageAccessor>
+      <ExtendedInformation>
+        <Abstract>SRS:EPSG:4326</Abstract>
+      </ExtendedInformation>
+    </QuadTileSet>
+  </ChildLayerSet>
+</LayerSet>

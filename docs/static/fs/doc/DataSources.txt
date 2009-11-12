@@ -1,0 +1,158 @@
+A DataSource is a backend data datasource. These data datasources provide 
+persistent storage for features.
+
+OGR
+===
+The OGR datasource allows you to take any OGR datasource -- such as a shapefile,
+PostGIS database, GML file, or other formats supported by OGR -- and use it
+as a backend for a FeatureServer layer.
+
+The OGR layer requires a 'dsn' property and a 'layer' property. In many cases, 
+the layer is part of the DSN. An example OGR configuration might look like:
+
+[myshape]
+type=OGR
+dsn=/home/example/myshape.shp
+layer=myshape
+
+Dependancies:
+ * OGR
+ * ogr Python bindings
+
+DBM
+===
+The DBM datasource uses anydbm combined with pickle to store features in a file
+on disk. It should work on any platform. A sample DBM configuration might
+look like:
+
+[scribble]
+type=DBM
+file=/home/example/scribble.db
+
+Depending on the system on which it is running, the internals of this database
+may be different. 
+
+Dependancies:
+ * None
+
+BerkleyDB
+=========
+The BerkleyDB datasource is a subclass of the DBM datasource. It uses a 
+BerkleyDB module for storage. The bsddb module is not available under OS X, 
+however, this datasource should work on both Windows and Linux. It is 
+recommended to use  this datasource instead of the DBM datasource when 
+possible. 
+
+Performance testing suggests that this datasource is approximately 25% faster
+than the default anydbm module on Linux.
+
+A sample BerkleyDB configuration might look like: 
+
+[scribble]
+type=BerkleyDB
+file=/home/example/scribble.db
+
+Dependancies:
+ * working bsddb module
+
+PostGIS
+=======
+The PostGIS datasource implements a direct connection to PostGIS (rather than
+via OGR). This datasource requires dsn parameter and a layer parameter. It 
+also accepts a geometry parameter, a string value representing the name of the 
+geometry column, and a fid parameter, representing the name of the feature ID
+column.
+
+A sample PostGIS configuration might look like:
+
+[mylayer]
+type=PostGIS
+dsn=dbname=mydata
+layer=mylayer
+fid=ogc_fid
+geometry=wkb_geometry
+
+Dependancies:
+ * OGR
+ * ogr Python bindings
+ * psycopg
+
+SQLite
+======
+A simple sqlite datasource.
+
+Dependancies:
+ * None under Python2.5
+ * pysqlite under Python2.4
+
+WFS
+===
+The WFS datasource implements read-only access to WFS servers. Required 
+parameters are:
+ * url
+ * typename
+
+A sample WFS layer configuration might look like:
+
+[wfs]
+type=WFS
+url=http://zuluviz.sdsu.edu:8080/geoserver/wfs
+typename=topp:states
+
+Dependancies:
+ * OGR
+ * ogr Python bindings
+
+
+Flickr
+======
+The Flickr datasource loads data from geotagged Flickr photos. Filtering
+the results can be done by using any of the parameters listed at:
+
+http://flickr.com/services/api/flickr.photos.search.html
+
+For example, a flickr source limited to all photos which match all the 
+tags 'mit', 'food', '2007' from the user with ID '56541240@N00'::
+
+[flickr]
+type=Flickr
+user_id=56541240@N00
+tags=mit,food,2007
+tag_mode=all
+
+By default, this only shows public photos. To grant the datasource access
+to your non-public photos, you must fetch a 'read' permissions token from
+the API. You can use the Flickr.py as a command line application to do this:
+
+$ ./FeatureServer/DataSource/Flickr.py
+Open the following URL in a browser:
+http://flickr.com/services/auth/?api_key=[...]&perms=read&frob=[...]
+Press enter when complete.
+
+The result of this will be something like:
+
+Your token is:
+
+    721576-5d6044
+
+Add the following line to a Flickr data source to complete configuration:
+
+auth_token=721576-5d6044  
+
+With this example, a Flickr datasource would look like:
+
+[flickr]
+type=Flickr
+user_id=56541240@N00
+auth_token=721576-5d6044
+
+Twitter
+=======
+Powered by Twittervision, the twitter datasource lets you use twittervision's
+API to display the current location of a user.
+
+Very simplistic, doesn't do much.
+
+[twitter-crschmidt]
+type=Twitter
+username=crschmidt

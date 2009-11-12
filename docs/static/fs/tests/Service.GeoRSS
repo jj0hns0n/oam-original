@@ -1,0 +1,30 @@
+Creating a GeoRSS Service is simple:
+
+  >>> import FeatureServer.Service.GeoRSS as G
+  >>> g = G.GeoRSS({})
+
+It is then possible to use coordinates_to_geom to convert from
+a string to a geometry.
+  
+  >>> g.coordinates_to_geom("1 2", "Point")
+  {'type': 'Point', 'coordinates': [[2.0, 1.0]]}
+  
+  >>> g.coordinates_to_geom("1,2", "Point")
+  {'type': 'Point', 'coordinates': [[2.0, 1.0]]}
+  
+  >>> g.coordinates_to_geom("1,2 3,4", "Line")
+  {'type': 'Line', 'coordinates': [[2.0, 1.0], [4.0, 3.0]]}
+  
+  >>> g.coordinates_to_geom("1 2 3 4", "Box")
+  {'type': 'Polygon', 'coordinates': [[[2.0, 1.0], [4.0, 1.0], [4.0, 3.0], [2.0, 3.0], [2.0, 1.0]]]}
+
+Additionally, it is possible to use extract_entry_geometry to pull
+a geometry out of an entry. This example is a polygon from a Google
+Maps "MyMaps" feed. Note that the GML is lacking a georss:where 
+element, so it is invalid, but FeatureServer parses it, attempting to
+be 'lenient in what it accepts'.
+
+  >>> import xml.dom.minidom as minidom
+  >>> entry = minidom.parseString("""<item> <guid isPermaLink="false">0004396c0f042fa12a81f</guid>  <pubDate>Wed, 05 Sep 2007 23:49:38 +0000</pubDate>  <title>Shape 1</title>  <description/>  <author>crschmidt</author>  <gml:Polygon xmlns:gml="http://www.opengis.net/gml">      <gml:exterior>        <gml:LinearRing>       <gml:posList>         -89.472656 65.293465            -97.558594 63.782486            -91.230469 61.100788            -78.750000 58.904648            -82.617188 65.219894            -89.472656 65.293465          </gml:posList>     </gml:LinearRing>      </gml:exterior>    </gml:Polygon>  </item>""")  
+  >>> g.extract_entry_geometry(entry)
+  {'type': 'Polygon', 'coordinates': [[[65.293464999999998, -89.472656000000001], [63.782485999999999, -97.558593999999999], [61.100788000000001, -91.230468999999999], [58.904648000000002, -78.75], [65.219893999999996, -82.617187999999999], [65.293464999999998, -89.472656000000001]]]}

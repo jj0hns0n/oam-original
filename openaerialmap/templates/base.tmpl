@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="http://spatialreference.org/static/css/base.css" />
+    <title>{% block title %}A Free View of the World{% endblock %} -- OpenAerialMap</title>
+</head>
+
+<body>
+    <div id="header"><h1>{% block h1title %}OpenAerialMap{% endblock %}</h1></div>
+    <div id="navbar"><a href="/">Home</a> | <a href="/tutorial/">Tutorial</a> | <a href="/agent/create">Create Agent</a> | <a href="/datasource/create/">Create DataSource</a> | <a href="/datarecord/create/">Create DataRecord</a> | <a href="/map/">The Map</a> | <a href="/licensing/">License Information</a> | <a href="http://wiki.openaerialmap.org/">Wiki</a> | <a href="/usage/">Using OAM</a> | <a href="/about/">About</a></div>
+
+    <div id="content">
+    {% block content %} {% endblock %}
+    </div>
+    <div id="footer">
+    Graciously hosted by TelaScience, CalIT, SDSU, etc. <a href="/about/">About The Project</a><br />
+    </div>
+</body>
+</html>
